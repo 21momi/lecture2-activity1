@@ -51,7 +51,7 @@ def execute_command(command):
     elif command == "history":
         
 
-show_processing_animation()
+
 
 
 
