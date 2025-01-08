@@ -49,10 +49,42 @@ def execute_command(command):
         positive_count = negative_count = neutral_count =0
         return f"{Fore.CYAN} Mission reset ! All previous data has been cleared."
     elif command == "history":
-        
-
-
-
-
-
-
+        return "\n".join([f"{Fore.CYAN} Message {i+1}: {msg}" for i, msg in enumerate(conversion_history)])
+             if conversaton_history else f"{Fore.YELLOW} no conversation history available."
+    elif command == "help" :
+        return {f"{Fore.CYAN}🔍Available commands:\n"
+                f"- Type any sentence to analyze its sentiment.\n"
+                f"-Type 'summary' to get a mission report on analyzed sentiments.\n"
+                f"- Type 'reset' to clear all mission data and start fresh.\n"
+                f"- Type 'history' to view all previous messages and analyses.\n"
+                f"- Type 'exit' to conclude your mission and leave the chat."}  
+    else:
+        return f"{Fore.RED} Unknown command. Type 'help' for a list of commands."    
+def get_valid_name():
+    while True:
+        name = input("What's your name?").strip()
+        if name and name.isalpha():
+            return name
+        else:
+            print(f"{Fore.RED} Please entr a valid name with only a alphabetic character")
+def start_sentiment_chart():
+    print(f"{Fore.CYAN}{Style.BRIGHT} 😃Welcome to sentiment Spy! Your personal emotion detection is here")
+    global user_name
+    user_name = get_valid_name()
+    print(f"\n{Fore.CYAN} Nice to meet you, Agent {user_name}! Type your sentences to analyze emotions. Type 'help' for options")
+    while True:
+        user_input = input(f"\n{Fore.MAGENTA}{Style.BRIGHT}Agent {user_name}: {Style.RESET_ALL}").strip()
+        if not user_input:
+            print(f"{Fore.RED}Please enter a non-empty message or type 'help' for available commands.")
+            print(execute_command(user_input.lower()))
+        if user_input.lower() == "exit":
+            print(f"\n{Fore.BLUE}🔛Mission complete! Exiting sentiment spy. Farewell, Agent{user_name}!")
+            break
+        elif user_input.lower() in ['summary','reset','history','help']:
+            print(execute_command(user_input.lower()))
+        else:
+            show_processing_animation()
+            result= analyze_sentiment(user_input)
+            print(result)
+if __name__ =="__main__":
+    start_sentiment_chat()
