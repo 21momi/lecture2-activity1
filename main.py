@@ -49,14 +49,14 @@ def execute_command(command):
         positive_count = negative_count = neutral_count =0
         return f"{Fore.CYAN} Mission reset ! All previous data has been cleared."
     elif command == "history":
-        return "\n".join([f"{Fore.CYAN} Message {i+1}: {msg}" for i, msg in enumerate(conversion_history)])
-             if conversaton_history else f"{Fore.YELLOW} no conversation history available."
+        return "\n".join([f"{Fore.CYAN} Message {i+1}: {msg}" for i, msg in enumerate(conversation_history)])\
+             if 'conversaton_history' else f"{Fore.YELLOW} no conversation history available."
     elif command == "help" :
-        return {f"{Fore.CYAN}🔍Available commands:\n"
-                f"- Type any sentence to analyze its sentiment.\n"
-                f"-Type 'summary' to get a mission report on analyzed sentiments.\n"
-                f"- Type 'reset' to clear all mission data and start fresh.\n"
-                f"- Type 'history' to view all previous messages and analyses.\n"
+        return {f"{Fore.CYAN}🔍Available commands:/n"
+                f"- Type any sentence to analyze its sentiment./n"
+                f"-Type 'summary' to get a mission report on analyzed sentiments./n"
+                f"- Type 'reset' to clear all mission data and start fresh./n"
+                f"- Type 'history' to view all previous messages and analyses./n"
                 f"- Type 'exit' to conclude your mission and leave the chat."}  
     else:
         return f"{Fore.RED} Unknown command. Type 'help' for a list of commands."    
@@ -87,4 +87,4 @@ def start_sentiment_chart():
             result= analyze_sentiment(user_input)
             print(result)
 if __name__ =="__main__":
-    start_sentiment_chat()
+    start_sentiment_chart()
