@@ -9,7 +9,7 @@ positive_count=0#counters to track sentiment trends
 negative_count=0
 neutral_count=0
 def show_processing_animation():
-    print(f"{Fore.CYAN}","Detection sentimentclues",end="")
+    print(f"{Fore.CYAN}","Detection sentiment clues",end="")
     for _ in range(3):
         time.sleep(0.5)
         print(".",end="")
@@ -26,7 +26,7 @@ def analyze_sentiment(text):
             return f"\n {Fore.GREEN} ✨✨ Very positive sentiment detected, Agent {user_name}! (score:{sentiment:.2f})"
         elif 0.25 < sentiment <=0.75:
             positive_count +=1
-            return f"\n {Fore.GREEN} 😊 Very positive sentiment detected, Agent {user_name}! (score:{sentiment:.2f})"
+            return f"\n {Fore.GREEN} 😊  positive sentiment detected, Agent {user_name}! (score:{sentiment:.2f})"
         elif -0.25 <= sentiment <=0.25:
             neutral_count+=1
             return f"\n {Fore.YELLOW}  😑 Neutral Sentiment detected."
